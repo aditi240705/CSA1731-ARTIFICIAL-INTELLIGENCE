@@ -1,0 +1,29 @@
+% Facts: student, teacher, subject code
+student(john, math101).
+student(mary, cs102).
+student(tom, math101).
+student(anna, eng201).
+student(lisa, cs102).
+
+teacher(mr_smith, math101).
+teacher(ms_jones, cs102).
+teacher(mrs_brown, eng201).
+
+% Get the subject code of a student
+subject_code(Student, SubjectCode) :-
+    student(Student, SubjectCode).
+
+% Get the teacher of a subject
+teacher_of_subject(Teacher, SubjectCode) :-
+    teacher(Teacher, SubjectCode).
+
+% Find all students taught by a specific teacher
+students_of_teacher(Teacher, Student) :-
+    teacher(Teacher, SubjectCode),
+    student(Student, SubjectCode).
+
+% Find the teacher of a specific student
+teacher_of_student(Student, Teacher) :-
+    student(Student, SubjectCode),
+    teacher(Teacher, SubjectCode).
+
