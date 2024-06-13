@@ -1,0 +1,21 @@
+fruit_color(apple, red).
+fruit_color(banana, yellow).
+fruit_color(grape, purple).
+fruit_color(orange, orange).
+fruit_color(lemon, yellow).
+fruit_color(blueberry, blue).
+fruit_color(watermelon, green).
+
+% Query to find fruits of a specific color
+fruit_of_color(Color, Fruit) :-
+    fruit_color(Fruit, Color).
+
+% Query to find color of a specific fruit
+color_of_fruit(Fruit, Color) :-
+    fruit_color(Fruit, Color).
+
+% Query to list all fruits and their colors
+list_fruits_colors :-
+    fruit_color(Fruit, Color),
+    format('~w is ~w~n', [Fruit, Color]),
+    fail. % backtracking to find all solutions
