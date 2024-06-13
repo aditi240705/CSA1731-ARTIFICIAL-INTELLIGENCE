@@ -1,0 +1,21 @@
+% Facts: name and date of birth
+person(john, date(1985, 5, 15)).
+person(mary, date(1990, 7, 20)).
+person(tom, date(1982, 11, 5)).
+person(anna, date(1978, 2, 28)).
+person(lisa, date(2000, 1, 10)).
+
+dob(Name, DateOfBirth) :-
+    person(Name, DateOfBirth).
+
+year_of_birth(Name, Year) :-
+    person(Name, date(Year, _, _)).
+
+month_of_birth(Name, Month) :-
+    person(Name, date(_, Month, _)).
+
+day_of_birth(Name, Day) :-
+    person(Name, date(_, _, Day)).
+
+born_in_year(Year, Name) :-
+    person(Name, date(Year, _, _)).
