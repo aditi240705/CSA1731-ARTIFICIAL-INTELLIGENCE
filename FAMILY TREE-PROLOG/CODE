@@ -1,0 +1,33 @@
+parent(john, bob).
+parent(john, lily).
+parent(eva, bob).
+parent(eva, lily).
+parent(bob, patrick).
+parent(bob, mary).
+parent(lily, jack).
+mother(X, Y) :-
+    parent(X, Y),
+    female(X).
+father(X, Y) :-
+    parent(X, Y),
+    male(X).
+sibling(X, Y) :-
+    parent(Z, X),
+    parent(Z, Y),
+    X \= Y.
+grandparent(X, Y) :-
+    parent(X, Z),
+    parent(Z, Y).
+child(X, Y) :-
+    parent(Y, X).
+
+% Facts defining gender
+female(eva).
+female(lily).
+female(mary).
+
+male(john).
+male(bob).
+male(patrick).
+male(jack).
+
