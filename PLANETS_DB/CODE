@@ -1,0 +1,9 @@
+planet(mercury, terrestrial, 0.39).
+planet(venus, terrestrial, 0.72).
+planet(earth, terrestrial, 1.00).
+planet(mars, terrestrial, 1.52).
+planet(jupiter, gas_giant, 5.20).
+planet_type(Name,Type):-
+    planet(Name,Type,_).
+dist_from_sun(Name,Distance):-
+    planet(Name,_,Distance).
