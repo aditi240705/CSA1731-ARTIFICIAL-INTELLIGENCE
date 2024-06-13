@@ -1,0 +1,16 @@
+diet(diabetes, ['whole grains', 'non-starchy vegetables', 'lean proteins', 'healthy fats', 'fruits in moderation']).
+diet(hypertension, ['fruits', 'vegetables', 'whole grains', 'low-fat dairy products', 'lean meats', 'nuts and seeds']).
+diet(hyperlipidemia, ['fruits', 'vegetables', 'whole grains', 'low-fat dairy products', 'lean meats', 'oily fish', 'nuts and seeds']).
+diet(gout, ['low-purine foods (e.g., fruits, vegetables)', 'whole grains', 'low-fat dairy products', 'limited lean meats and fish', 'plenty of fluids']).
+
+
+suggest_diet(Disease) :-
+    diet(Disease, Foods),
+    write('Recommended diet for '), write(Disease), write(':'), nl,
+    print_list(Foods).
+
+% Helper predicate to print lists
+print_list([]) :- nl.
+print_list([H|T]) :-
+    write('- '), write(H), nl,
+    print_list(T).
