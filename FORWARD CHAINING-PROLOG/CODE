@@ -1,0 +1,16 @@
+% Facts
+parent(john, mary).
+parent(mary, susan).
+parent(mary, tom).
+parent(susan, james).
+
+% Rules
+:- dynamic grandparent/2.
+
+infer_grandparent :- 
+    parent(X, Y),
+    parent(Y, Z),
+    \+ grandparent(X, Z),
+    assertz(grandparent(X, Z)),
+    fail.
+infer_grandparent.
