@@ -1,0 +1,32 @@
+symptom(fever).
+symptom(cough).
+symptom(fatigue).
+symptom(headache).
+symptom(rash).
+symptom(sore_throat).
+:- dynamic disease/1.
+infer_disease :- 
+    fever_diagnosis,
+    cough_diagnosis,
+    rash_diagnosis,
+    fail.
+infer_disease.
+
+fever_diagnosis :-
+    symptom(fever),
+    symptom(fatigue),
+    symptom(headache),
+    \+ disease(flu),
+    assertz(disease(flu)).
+
+cough_diagnosis :-
+    symptom(cough),
+    symptom(sore_throat),
+    symptom(fatigue),
+    \+ disease(common_cold),
+    assertz(disease(common_cold)).
+
+rash_diagnosis :-
+    symptom(rash),
+    \+ disease(allergy),
+    assertz(disease(allergy)).
