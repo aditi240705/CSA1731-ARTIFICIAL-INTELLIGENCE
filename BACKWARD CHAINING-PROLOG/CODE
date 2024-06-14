@@ -1,0 +1,9 @@
+% Facts
+parent(john, mary).
+parent(mary, susan).
+parent(mary, tom).
+parent(susan, james).
+
+% Rules
+ancestor(X, Y) :- parent(X, Y).
+ancestor(X, Y) :- parent(X, Z), ancestor(Z, Y).
