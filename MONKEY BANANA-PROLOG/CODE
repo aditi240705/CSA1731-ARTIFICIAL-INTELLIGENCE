@@ -1,0 +1,29 @@
+% Define the initial state and goal state
+initial(state(at_door, on_floor, at_door, has_not)).
+goal(state(_, _, _, has)).
+
+% Define possible actions and their effects
+move(state(middle, on_box, middle, H), grasp, state(middle, on_box, middle, has)) :-
+    H = has_not.
+move(state(P, on_floor, P, H), climb, state(P, on_box, P, H)).
+move(state(P1, on_floor, P1, H), push(P1, P2), state(P2, on_floor, P2, H)).
+move(state(P1, on_floor, B, H), walk(P1, P2), state(P2, on_floor, B, H)).
+
+% Define the plan/3 predicate to find a sequence of actions leading to the goal
+plan(State, _, []) :- goal(State).
+plan(State1, Visited, [Action|Actions]) :-
+    move(State1, Action, State2),
+    \+ member(State2, Visited),  % Avoid loops
+    plan(State2, [State2|Visited], Actions).
+
+% Solve the problem by finding a plan from the initial state
+solve :-
+    initial(InitialState),
+    plan(InitialState, [InitialState], Plan),
+    write('Plan to get the bananas: '), nl,
+    write_plan(Plan).
+
+write_plan([]).
+write_plan([Action|Actions]) :-
+    write(Action), nl,
+    write_plan(Actions).
